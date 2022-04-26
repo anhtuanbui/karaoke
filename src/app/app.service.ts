@@ -56,4 +56,9 @@ export class AppService {
     return this.next;
   }
 
+  clearStorage(){
+    localStorage.removeItem('current');
+    localStorage.removeItem('playlist');
+  }
+
 }
