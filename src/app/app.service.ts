@@ -10,7 +10,8 @@ export class AppService {
   apiUrl = 'https://www.googleapis.com/youtube/v3/search';
   // key = 'AIzaSyBlOS5B45a1_mYfwLHnD3575nJKrXJRiGY';
   // key = 'AIzaSyC24a97SQReUKtL4NglC-NiRPzZ7e44NU4';
-  key = 'AIzaSyCfKLdeVtFeWdY9ELBnKb9R05Vhnmw9_7s';
+  // key = 'AIzaSyCfKLdeVtFeWdY9ELBnKb9R05Vhnmw9_7s';
+  key = 'AIzaSyB_wh-tCdDetZ54z1cWizVQlge2BiNO6S8';
 
   // playlist: IVideo[] = [];
   // currentVideo?: IVideo;
