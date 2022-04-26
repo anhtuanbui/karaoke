@@ -33,7 +33,6 @@ export class HomeComponent implements OnInit {
 
   ngOnDestroy() {
     this.removeStorageListener();
-    this.appService.clearStorage();
   }
 
   onSubmit() {
@@ -51,7 +50,6 @@ export class HomeComponent implements OnInit {
       this.playlist = [];
     }
     if (this.playlist.findIndex((v) => v.id.videoId === video.id.videoId) > -1) {
-      console.log('This video is in the playlist');
       this.snackbar.open('This video is in the playlist', 'Dismiss');
     } else {
       this.playlist.push(video);
