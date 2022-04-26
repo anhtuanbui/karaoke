@@ -1,4 +1,4 @@
-import { IVideo } from './../shared/models/video';
+import { IVideo, Video } from './../shared/models/video';
 import { AppService } from './../app.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -43,6 +43,12 @@ export class HomeComponent implements OnInit {
   onPlay(video:IVideo){
     this.currentVideo = video;
     this.appService.setCurrentVideoToLocal(video);
+  }
+
+  onClearAll() {
+    this.appService.clearStorage();
+    this.playlist = [];
+    this.currentVideo = undefined;
   }
 
   onAddToPlaylist(video: IVideo) {

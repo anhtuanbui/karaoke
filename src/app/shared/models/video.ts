@@ -44,3 +44,10 @@ export interface IVideo {
     id: Id;
     snippet: Snippet;
 }
+
+export class Video {
+    kind?: string;
+    etag?: string;
+    id?: Id;
+    snippet?: Snippet;
+}

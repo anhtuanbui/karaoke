@@ -46,7 +46,10 @@
   </div>
 
   <div class="playlist-wrapper">
-    <h2>Playlist</h2>
+    <div class="title-wrapper">
+      <h2>Playlist</h2>
+      <button mat-button (click)="onClearAll()">Clear all</button>
+    </div>
 
     <div cdkDropList class="drop-list" (cdkDropListDropped)="drop($event)">
       <div
@@ -59,7 +62,10 @@
             [src]="video.snippet.thumbnails.default.url"
             alt="{{ video.snippet.title }}"
           />
-          <div class="result-view-thumbnail-bg" *ngIf="video.id.videoId == currentVideo?.id?.videoId">
+          <div
+            class="result-view-thumbnail-bg"
+            *ngIf="video.id.videoId == currentVideo?.id?.videoId"
+          >
             <p>Playing</p>
           </div>
         </div>

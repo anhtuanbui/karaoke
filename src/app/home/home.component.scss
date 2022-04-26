@@ -12,6 +12,15 @@
   width: 800px;
 }
 
+.title-wrapper {
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    background-color: $amber;
+  }
+}
+
 .mat-form-field {
   width: 400px;
 }

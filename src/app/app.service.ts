@@ -20,7 +20,7 @@ export class AppService {
   constructor(private http: HttpClient) {}
 
   getVideos(query: string): Observable<any> {
-    const url = `${this.apiUrl}?q=${query}&key=${this.key}&part=snippet&type=video&maxResults=5`;
+    const url = `${this.apiUrl}?q=${query}&key=${this.key}&part=snippet&type=video&maxResults=6`;
     return this.http
       .get<IVideo>(url)
       .pipe(map((response: any) => response.items));
