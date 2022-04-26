@@ -1,0 +1,83 @@
+<div class="home-wrapper">
+  <div class="find-wrapper">
+    <h2>Find songs</h2>
+
+    <form class="search-form" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Search</mat-label>
+        <input
+          formControlName="search"
+          matInput
+          type="text"
+          (input)="onSearchChange($event)"
+        />
+        <button
+          *ngIf="this.searchForm.get('search')!.value"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="searchForm.reset()"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+      <button class="search-button" mat-button>
+        <mat-icon>search</mat-icon>
+      </button>
+    </form>
+
+    <div class="result-view" *ngFor="let video of searchResults">
+      <img
+        [src]="video.snippet.thumbnails.default.url"
+        alt="{{ video.snippet.title }}"
+      />
+      <h5>{{ video.snippet.title }}</h5>
+      <div class="more-button">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_horiz</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="onAddToPlaylist(video)">
+            Add to playlist
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+
+  <div class="playlist-wrapper">
+    <h2>Playlist</h2>
+
+    <div cdkDropList class="drop-list" (cdkDropListDropped)="drop($event)">
+      <div
+        class="result-view"
+        *ngFor="let video of playlist; index as i"
+        cdkDrag
+      >
+        <div class="result-view-thumbnail">
+          <img
+            [src]="video.snippet.thumbnails.default.url"
+            alt="{{ video.snippet.title }}"
+          />
+          <div class="result-view-thumbnail-bg" *ngIf="video.id.videoId == currentVideo?.id?.videoId">
+            <p>Playing</p>
+          </div>
+        </div>
+        <h5>{{ video.snippet.title }}</h5>
+        <div class="more-button">
+          <button matTooltip="play" mat-icon-button (click)="onPlay(video)">
+            <mat-icon>play_arrow</mat-icon>
+          </button>
+          <button matTooltip="more" mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_horiz</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="onRemoveFromPlaylist(i)">
+              Remove from playlist
+            </button>
+          </mat-menu>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

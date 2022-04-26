@@ -1,0 +1,5 @@
+<youtube-player
+  [videoId]="currentVideo ? currentVideo.id.videoId : ''"
+  (ready)="onReady($event)"
+  (stateChange)="onStateChange($event)"
+></youtube-player>
