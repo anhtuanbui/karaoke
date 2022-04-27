@@ -59,9 +59,9 @@ export class VideoComponent implements OnInit {
       window.addEventListener(
         'storage',
         () => {
-          if (this.appService.getVideoState() === 'pause') {
+          if (this.appService.getVideoState() === this.appService.states[0]) {
             event$.target.pauseVideo();
-          }else{
+          }else if(this.appService.getVideoState() === this.appService.states[1]){
             event$.target.playVideo();
           }
         },
@@ -111,10 +111,7 @@ export class VideoComponent implements OnInit {
   playVideo(event: any) {
     setTimeout(() => {
       event.target.playVideo();
+      this.appService.setVideoState(this.appService.states[1]);
     }, 1500);
-  }
-
-  pauseVideo(event$:any){
-
   }
 }

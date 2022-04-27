@@ -77,7 +77,7 @@
             class="result-view-thumbnail-bg"
             *ngIf="video.id.videoId == currentVideo?.id?.videoId"
           >
-            <p>Playing</p>
+            <p>{{state}}</p>
           </div>
         </div>
         <h6>{{ video.snippet.title }}</h6>

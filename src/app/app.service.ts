@@ -22,8 +22,10 @@ export class AppService {
     'AIzaSyCfKLdeVtFeWdY9ELBnKb9R05Vhnmw9_7s',
     'AIzaSyBLhISEJMW_iDQ0g7qhBuYazoDToa1LALY',
     'AIzaSyBrO0VrW8bjDOSH9tJkL6oL7MVU6yb5cU8',
-    'AIzaSyBCj4OSHEHtSGAKhFdnZwhzFi5JeHUuEk8'
+    'AIzaSyBCj4OSHEHtSGAKhFdnZwhzFi5JeHUuEk8',
   ];
+
+  states = ['paused', 'playing'];
 
   constructor(private http: HttpClient, private snackbar: MatSnackBar) {}
 
@@ -62,6 +64,7 @@ export class AppService {
   clearStorage() {
     localStorage.removeItem('current');
     localStorage.removeItem('playlist');
+    localStorage.removeItem('state');
   }
 
   setKeyToLocal(key: string) {
@@ -92,23 +95,23 @@ export class AppService {
     });
   }
 
-  getKeys(){
+  getKeys() {
     return this.keys;
   }
 
-  getKeyIndex(){
+  getKeyIndex() {
     return localStorage.getItem('keyIndex');
   }
 
-  setKeyIndex(keyIndex:number){
+  setKeyIndex(keyIndex: number) {
     localStorage.setItem('keyIndex', keyIndex.toString());
   }
 
-  setVideoState(state:string){
+  setVideoState(state: string) {
     localStorage.setItem('state', state);
   }
 
-  getVideoState(){
+  getVideoState() {
     return localStorage.getItem('state');
   }
 }

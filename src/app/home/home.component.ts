@@ -22,6 +22,8 @@ export class HomeComponent implements OnInit {
 
   enableSearch = false;
 
+  state = 'playing';
+
   constructor(private appService: AppService, private snackbar: MatSnackBar) {}
 
   ngOnInit(): void {
@@ -39,9 +41,21 @@ export class HomeComponent implements OnInit {
     this.getVideos(searchfield);
   }
 
+  onPlayPause() {
+    if (this.appService.getVideoState() === this.appService.states[1]) {
+      this.appService.setVideoState(this.appService.states[0]);
+      this.appService.openSnackbar(`Video is ${this.appService.states[0]}`);
+    } else if (this.appService.getVideoState() === this.appService.states[0]) {
+      this.appService.setVideoState(this.appService.states[1]);
+      this.appService.openSnackbar(`Video is ${this.appService.states[1]}`);
+    }
+    this.state = this.appService.getVideoState()!;
+  }
+
   onPlay(video: IVideo) {
     this.currentVideo = video;
     this.appService.setCurrentVideoToLocal(video);
+    this.appService.openSnackbar(`${video.snippet.title} is playing`);
   }
 
   onClearAll() {
@@ -74,7 +88,9 @@ export class HomeComponent implements OnInit {
   onRemoveFromPlaylist(index: number) {
     this.appService.removeVideoFromPlaylist(index);
     this.playlist = this.appService.getPlaylistFromLocal();
-    this.appService.openSnackbar(`Removed video number ${index+1} from playlist`);
+    this.appService.openSnackbar(
+      `Removed video number ${index + 1} from playlist`
+    );
   }
 
   addStorageListener() {
@@ -110,13 +126,5 @@ export class HomeComponent implements OnInit {
     this.appService.getVideos(value).subscribe((videos: IVideo[]) => {
       this.searchResults = videos;
     });
-  }
-
-  onPlayPause() {
-    if (this.appService.getVideoState() === 'play') {
-      this.appService.setVideoState('pause');
-    } else if (this.appService.getVideoState() === 'pause') {
-      this.appService.setVideoState('play');
-    }
   }
 }
