@@ -12,13 +12,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { SettingComponent } from './setting/setting.component';
+import { UsageComponent } from './usage/usage.component';
+import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     VideoComponent,
-    SettingComponent
+    SettingComponent,
+    UsageComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,9 +32,10 @@ import { SettingComponent } from './setting/setting.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    YouTubePlayerModule
+    YouTubePlayerModule,
+    MarkdownModule.forRoot(),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
