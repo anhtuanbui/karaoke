@@ -14,7 +14,7 @@ export class AppService {
   // key = 'AIzaSyCfKLdeVtFeWdY9ELBnKb9R05Vhnmw9_7s';
   // key = 'AIzaSyBLhISEJMW_iDQ0g7qhBuYazoDToa1LALY';
   key = 'AIzaSyBrO0VrW8bjDOSH9tJkL6oL7MVU6yb5cU8';
-  number = 10;
+  number = 6;
 
   constructor(private http: HttpClient, private snackbar:MatSnackBar) {}
 
