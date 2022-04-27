@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { IVideo } from './shared/models/video';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -15,7 +16,7 @@ export class AppService {
   key = 'AIzaSyBrO0VrW8bjDOSH9tJkL6oL7MVU6yb5cU8';
   number = 10;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private snackbar:MatSnackBar) {}
 
   getVideos(query: string): Observable<any> {
     this.key = this.getKeyFromLocal()!;
@@ -74,5 +75,11 @@ export class AppService {
       return parseInt(localStorage.getItem('number')!);
     }
     return this.number;
+  }
+
+  openSnackbar(message:string){
+    this.snackbar.open(message, 'Dismiss', {
+      duration: 3000
+    })
   }
 }

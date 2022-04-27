@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit {
     if (
       this.playlist.findIndex((v) => v.id.videoId === video.id.videoId) > -1
     ) {
-      this.snackbar.open('This video is in the playlist', 'Dismiss');
+      this.appService.openSnackbar('This video is in the playlist');
     } else {
       this.playlist.push(video);
       this.appService.setPlaylistToLocal(this.playlist);

@@ -21,14 +21,14 @@ export class SettingComponent implements OnInit {
     console.log(this.settingForm.value);
     if (this.settingForm.get('key')?.value != '') {
       this.appService.setKeyToLocal(this.settingForm.get('key')?.value);
-      this.snackBar.open('Settings changed successfully', 'Dismiss');
+      this.appService.openSnackbar('Settings changed successfully');
     }
 
     if (this.settingForm.get('numberResult')?.value != '') {
       this.appService.setNumberOfResultToLocal(
         this.settingForm.get('numberResult')?.value
       );
-      this.snackBar.open('Settings changed successfully', 'Dismiss');
+      this.appService.openSnackbar('Settings changed successfully');
     }
     this.settingForm.reset();
   }
@@ -37,6 +37,6 @@ export class SettingComponent implements OnInit {
     localStorage.removeItem('key');
     localStorage.removeItem('number');
     this.settingForm.reset();
-    this.snackBar.open('Settings reset successfully', 'Dismiss');
+    this.appService.openSnackbar('Settings reset successfully');
   }
 }
