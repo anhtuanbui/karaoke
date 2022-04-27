@@ -1,3 +1,4 @@
+import { KeyInterceptor } from './extensions/interceptors/keyError.interceptor';
 import { MaterialModule } from './shared/materials/material.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -9,7 +10,7 @@ import { VideoComponent } from './video/video.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { SettingComponent } from './setting/setting.component';
 import { UsageComponent } from './usage/usage.component';
@@ -35,7 +36,9 @@ import { MarkdownModule } from 'ngx-markdown';
     YouTubePlayerModule,
     MarkdownModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: KeyInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

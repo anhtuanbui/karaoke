@@ -18,7 +18,6 @@ export class SettingComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    console.log(this.settingForm.value);
     if (this.settingForm.get('key')?.value != '') {
       this.appService.setKeyToLocal(this.settingForm.get('key')?.value);
       this.appService.openSnackbar('Settings changed successfully');

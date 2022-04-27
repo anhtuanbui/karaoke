@@ -13,10 +13,19 @@ export class AppService {
   // key = 'AIzaSyC24a97SQReUKtL4NglC-NiRPzZ7e44NU4';
   // key = 'AIzaSyCfKLdeVtFeWdY9ELBnKb9R05Vhnmw9_7s';
   // key = 'AIzaSyBLhISEJMW_iDQ0g7qhBuYazoDToa1LALY';
+  number = 20;
   key = 'AIzaSyBrO0VrW8bjDOSH9tJkL6oL7MVU6yb5cU8';
-  number = 6;
 
-  constructor(private http: HttpClient, private snackbar:MatSnackBar) {}
+  keys = [
+    'AIzaSyBlOS5B45a1_mYfwLHnD3575nJKrXJRiGY',
+    'AIzaSyC24a97SQReUKtL4NglC-NiRPzZ7e44NU4',
+    'AIzaSyCfKLdeVtFeWdY9ELBnKb9R05Vhnmw9_7s',
+    'AIzaSyBLhISEJMW_iDQ0g7qhBuYazoDToa1LALY',
+    'AIzaSyBrO0VrW8bjDOSH9tJkL6oL7MVU6yb5cU8',
+    'AIzaSyBCj4OSHEHtSGAKhFdnZwhzFi5JeHUuEk8'
+  ];
+
+  constructor(private http: HttpClient, private snackbar: MatSnackBar) {}
 
   getVideos(query: string): Observable<any> {
     this.key = this.getKeyFromLocal()!;
@@ -49,7 +58,7 @@ export class AppService {
     playlist.splice(index, 1);
     this.setPlaylistToLocal(playlist);
   }
-  
+
   clearStorage() {
     localStorage.removeItem('current');
     localStorage.removeItem('playlist');
@@ -60,7 +69,7 @@ export class AppService {
   }
 
   getKeyFromLocal() {
-    if(localStorage.getItem('key')){
+    if (localStorage.getItem('key')) {
       return localStorage.getItem('key');
     }
     return this.key;
@@ -77,9 +86,29 @@ export class AppService {
     return this.number;
   }
 
-  openSnackbar(message:string){
-    this.snackbar.open(message, 'Dismiss', {
-      duration: 3000
-    })
+  openSnackbar(message: string) {
+    this.snackbar.open(message, 'Close', {
+      duration: 3000,
+    });
+  }
+
+  getKeys(){
+    return this.keys;
+  }
+
+  getKeyIndex(){
+    return localStorage.getItem('keyIndex');
+  }
+
+  setKeyIndex(keyIndex:number){
+    localStorage.setItem('keyIndex', keyIndex.toString());
+  }
+
+  setVideoState(state:string){
+    localStorage.setItem('state', state);
+  }
+
+  getVideoState(){
+    return localStorage.getItem('state');
   }
 }

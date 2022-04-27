@@ -48,9 +48,26 @@ export class VideoComponent implements OnInit {
     }
   }
 
-  onReady(event: any) {
-    this.addStorageListener(event);
-    this.playVideo(event);
+  onReady(event$: any) {
+    this.addVideoListener(event$);
+    this.addStorageListener(event$);
+    this.playVideo(event$);
+  }
+
+  addVideoListener(event$: any) {
+    if (window.addEventListener) {
+      window.addEventListener(
+        'storage',
+        () => {
+          if (this.appService.getVideoState() === 'pause') {
+            event$.target.pauseVideo();
+          }else{
+            event$.target.playVideo();
+          }
+        },
+        false
+      );
+    }
   }
 
   addStorageListener(event$: any) {
@@ -95,5 +112,9 @@ export class VideoComponent implements OnInit {
     setTimeout(() => {
       event.target.playVideo();
     }, 1500);
+  }
+
+  pauseVideo(event$:any){
+
   }
 }

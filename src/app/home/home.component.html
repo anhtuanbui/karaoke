@@ -52,7 +52,14 @@
   <div class="playlist-wrapper">
     <div class="title-wrapper">
       <h2>Playlist</h2>
-      <button mat-button (click)="onClearAll()">Clear all</button>
+      <div class="playlist-right-buttons">
+        <button class="play-pause-button" mat-button (click)="onPlayPause()">
+          Play/Pause
+        </button>
+        <button class="clear-all-button" mat-button (click)="onClearAll()">
+          Clear all
+        </button>
+      </div>
     </div>
 
     <div cdkDropList class="drop-list" (cdkDropListDropped)="drop($event)">

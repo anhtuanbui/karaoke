@@ -109,4 +109,12 @@ export class HomeComponent implements OnInit {
       this.searchResults = videos;
     });
   }
+
+  onPlayPause() {
+    if (this.appService.getVideoState() === 'play') {
+      this.appService.setVideoState('pause');
+    } else if (this.appService.getVideoState() === 'pause') {
+      this.appService.setVideoState('play');
+    }
+  }
 }

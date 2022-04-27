@@ -8,15 +8,21 @@
   padding-top: 20px;
 }
 
-.find-wrapper, .playlist-wrapper {
+.find-wrapper,
+.playlist-wrapper {
   width: 800px;
 }
 
 .title-wrapper {
   display: flex;
   justify-content: space-between;
-
-  button {
+}
+.playlist-right-buttons {
+  .play-pause-button{
+    background-color: $border-color;
+    margin-right: 10px;
+  }
+  .clear-all-button {
     background-color: $amber;
   }
 }
