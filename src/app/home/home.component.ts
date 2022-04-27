@@ -61,6 +61,7 @@ export class HomeComponent implements OnInit {
     } else {
       this.playlist.push(video);
       this.appService.setPlaylistToLocal(this.playlist);
+      this.appService.openSnackbar(`Added ${video.snippet.title} to playlist`);
     }
   }
 
@@ -73,6 +74,7 @@ export class HomeComponent implements OnInit {
   onRemoveFromPlaylist(index: number) {
     this.appService.removeVideoFromPlaylist(index);
     this.playlist = this.appService.getPlaylistFromLocal();
+    this.appService.openSnackbar(`Removed video number ${index+1} from playlist`);
   }
 
   addStorageListener() {

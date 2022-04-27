@@ -88,7 +88,7 @@ export class AppService {
 
   openSnackbar(message: string) {
     this.snackbar.open(message, 'Close', {
-      duration: 3000,
+      duration: 5000,
     });
   }
 
