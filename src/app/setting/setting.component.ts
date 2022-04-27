@@ -21,7 +21,6 @@ export class SettingComponent implements OnInit {
     console.log(this.settingForm.value);
     if (this.settingForm.get('key')?.value != '') {
       this.appService.setKeyToLocal(this.settingForm.get('key')?.value);
-      this.settingForm.reset();
       this.snackBar.open('Settings changed successfully', 'Dismiss');
     }
 
@@ -29,9 +28,9 @@ export class SettingComponent implements OnInit {
       this.appService.setNumberOfResultToLocal(
         this.settingForm.get('numberResult')?.value
       );
-      this.settingForm.reset();
       this.snackBar.open('Settings changed successfully', 'Dismiss');
     }
+    this.settingForm.reset();
   }
 
   onReset() {

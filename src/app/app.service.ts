@@ -11,13 +11,9 @@ export class AppService {
   // key = 'AIzaSyBlOS5B45a1_mYfwLHnD3575nJKrXJRiGY';
   // key = 'AIzaSyC24a97SQReUKtL4NglC-NiRPzZ7e44NU4';
   // key = 'AIzaSyCfKLdeVtFeWdY9ELBnKb9R05Vhnmw9_7s';
-  key = 'AIzaSyBLhISEJMW_iDQ0g7qhBuYazoDToa1LALY';
+  // key = 'AIzaSyBLhISEJMW_iDQ0g7qhBuYazoDToa1LALY';
+  key = 'AIzaSyBrO0VrW8bjDOSH9tJkL6oL7MVU6yb5cU8';
   number = 10;
-
-  // playlist: IVideo[] = [];
-  // currentVideo?: IVideo;
-  // currentVideoIndex:number = 0;
-  next = false;
 
   constructor(private http: HttpClient) {}
 
@@ -52,15 +48,7 @@ export class AppService {
     playlist.splice(index, 1);
     this.setPlaylistToLocal(playlist);
   }
-
-  setNext(value: boolean) {
-    this.next = value;
-  }
-
-  getNext() {
-    return this.next;
-  }
-
+  
   clearStorage() {
     localStorage.removeItem('current');
     localStorage.removeItem('playlist');

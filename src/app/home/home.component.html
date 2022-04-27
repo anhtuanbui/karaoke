@@ -22,17 +22,20 @@
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
-      <button class="search-button" mat-button>
+      <button class="search-button" mat-button (keypress.enter)="onSubmit()">
         <mat-icon>search</mat-icon>
       </button>
     </form>
 
     <div class="result-view" *ngFor="let video of searchResults">
-      <img
-        [src]="video.snippet.thumbnails.default.url"
-        alt="{{ video.snippet.title }}"
-      />
-      <h5>{{ video.snippet.title }}</h5>
+      <div class="result-view-thumbnail">
+        <img
+          [src]="video.snippet.thumbnails.default.url"
+          alt="{{ video.snippet.title }}"
+        />
+      </div>
+
+      <h6>{{ video.snippet.title }}</h6>
       <div class="more-button">
         <button mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon>more_horiz</mat-icon>
@@ -70,7 +73,7 @@
             <p>Playing</p>
           </div>
         </div>
-        <h5>{{ video.snippet.title }}</h5>
+        <h6>{{ video.snippet.title }}</h6>
         <div class="more-button">
           <button matTooltip="play" mat-icon-button (click)="onPlay(video)">
             <mat-icon>play_arrow</mat-icon>

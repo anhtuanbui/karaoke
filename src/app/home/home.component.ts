@@ -25,7 +25,6 @@ export class HomeComponent implements OnInit {
   constructor(private appService: AppService, private snackbar: MatSnackBar) {}
 
   ngOnInit(): void {
-    this.getVideos('');
     this.addStorageListener();
     this.playlist = this.appService.getPlaylistFromLocal();
     this.currentVideo = this.appService.getCurrentVideoFromLocal();
@@ -40,7 +39,7 @@ export class HomeComponent implements OnInit {
     this.getVideos(searchfield);
   }
 
-  onPlay(video:IVideo){
+  onPlay(video: IVideo) {
     this.currentVideo = video;
     this.appService.setCurrentVideoToLocal(video);
   }
@@ -52,10 +51,12 @@ export class HomeComponent implements OnInit {
   }
 
   onAddToPlaylist(video: IVideo) {
-    if(this.playlist === null){
+    if (this.playlist === null) {
       this.playlist = [];
     }
-    if (this.playlist.findIndex((v) => v.id.videoId === video.id.videoId) > -1) {
+    if (
+      this.playlist.findIndex((v) => v.id.videoId === video.id.videoId) > -1
+    ) {
       this.snackbar.open('This video is in the playlist', 'Dismiss');
     } else {
       this.playlist.push(video);
@@ -64,13 +65,9 @@ export class HomeComponent implements OnInit {
   }
 
   onSearchChange(event: any) {
-    this.enableSearch = false;
-    setTimeout(() => {
-      this.enableSearch = true;
-      if (this.enableSearch) {
-        this.getVideos(event.target.value);
-      }
-    }, 1000);
+    // setTimeout(() => {
+    //   this.getVideos(event.target.value);
+    // }, 2000);
   }
 
   onRemoveFromPlaylist(index: number) {
@@ -112,5 +109,4 @@ export class HomeComponent implements OnInit {
       this.searchResults = videos;
     });
   }
-
 }
