@@ -1,0 +1,21 @@
+<div class="setting-wrapper">
+  <div class="title-wrapper">
+    <h2>Settings</h2>
+    <button class="reset-button" mat-button (click)="onReset()">Reset all</button>
+  </div>
+
+  <form [formGroup]="settingForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Key</mat-label>
+      <input type="text" formControlName="key" matInput />
+    </mat-form-field>
+    <br />
+
+    <mat-form-field appearance="outline">
+      <mat-label>Number of results</mat-label>
+      <input type="text" formControlName="numberResult" matInput />
+    </mat-form-field>
+    <br />
+    <button class="submit-button" mat-button>Submit</button>
+  </form>
+</div>

@@ -11,7 +11,8 @@ export class AppService {
   // key = 'AIzaSyBlOS5B45a1_mYfwLHnD3575nJKrXJRiGY';
   // key = 'AIzaSyC24a97SQReUKtL4NglC-NiRPzZ7e44NU4';
   // key = 'AIzaSyCfKLdeVtFeWdY9ELBnKb9R05Vhnmw9_7s';
-  key = 'AIzaSyB_wh-tCdDetZ54z1cWizVQlge2BiNO6S8';
+  key = 'AIzaSyBLhISEJMW_iDQ0g7qhBuYazoDToa1LALY';
+  number = 10;
 
   // playlist: IVideo[] = [];
   // currentVideo?: IVideo;
@@ -21,7 +22,10 @@ export class AppService {
   constructor(private http: HttpClient) {}
 
   getVideos(query: string): Observable<any> {
-    const url = `${this.apiUrl}?q=${query}&key=${this.key}&part=snippet&type=video&maxResults=10`;
+    this.key = this.getKeyFromLocal()!;
+    this.number = this.getNumberFromLocal();
+
+    const url = `${this.apiUrl}?q=${query}&key=${this.key}&part=snippet&type=video&maxResults=${this.number}`;
     return this.http
       .get<IVideo>(url)
       .pipe(map((response: any) => response.items));
@@ -43,23 +47,44 @@ export class AppService {
     return JSON.parse(localStorage.getItem('current')!);
   }
 
-  removeVideoFromPlaylist(index:number){
+  removeVideoFromPlaylist(index: number) {
     let playlist = this.getPlaylistFromLocal();
-    playlist.splice(index,1);
+    playlist.splice(index, 1);
     this.setPlaylistToLocal(playlist);
   }
 
-  setNext(value:boolean){
+  setNext(value: boolean) {
     this.next = value;
   }
 
-  getNext(){
+  getNext() {
     return this.next;
   }
 
-  clearStorage(){
+  clearStorage() {
     localStorage.removeItem('current');
     localStorage.removeItem('playlist');
   }
 
+  setKeyToLocal(key: string) {
+    localStorage.setItem('key', key);
+  }
+
+  getKeyFromLocal() {
+    if(localStorage.getItem('key')){
+      return localStorage.getItem('key');
+    }
+    return this.key;
+  }
+
+  setNumberOfResultToLocal(number: string) {
+    localStorage.setItem('number', number);
+  }
+
+  getNumberFromLocal() {
+    if (localStorage.getItem('number')) {
+      return parseInt(localStorage.getItem('number')!);
+    }
+    return this.number;
+  }
 }

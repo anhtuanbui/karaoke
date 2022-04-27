@@ -11,12 +11,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { YouTubePlayerModule } from '@angular/youtube-player';
+import { SettingComponent } from './setting/setting.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    VideoComponent
+    VideoComponent,
+    SettingComponent
   ],
   imports: [
     BrowserModule,
